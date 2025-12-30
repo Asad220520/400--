@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Deutsch Master</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="app-wrapper">
+        
+        <header class="glass-header">
+            <div class="level-badge">
+                <i class="ph-fill ph-trophy"></i>
+                <span id="header-learned">0</span>
+            </div>
+            <div class="streak-badge">
+                <i class="ph-fill ph-fire"></i>
+                <span>PRO</span>
+            </div>
+        </header>
+
+        <main id="main-content">
+
+            <div id="view-dashboard" class="view active fade-in">
+                <div class="hero-banner">
+                    <h1>Guten Tag! 🇩🇪</h1>
+                    <p>Готов покорять немецкий?</p>
+                    <div class="progress-track">
+                        <div class="progress-fill" id="global-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="section-title">Настройки тренировки</div>
+                
+                <div class="topic-selector-wrapper">
+                    <i class="ph ph-hash icon-left"></i>
+                    <select id="topic-select" class="topic-select">
+                        <option value="all">Все темы (Микс)</option>
+                    </select>
+                    <i class="ph ph-caret-down icon-right"></i>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="game-card" onclick="prepareSession(10)">
+                        <div class="card-icon blue"><i class="ph-fill ph-lightning"></i></div>
+                        <div class="card-info">
+                            <span class="count">10</span>
+                            <span class="label">Быстрая</span>
+                        </div>
+                    </div>
+                    <div class="game-card" onclick="prepareSession(20)">
+                        <div class="card-icon purple"><i class="ph-fill ph-barbell"></i></div>
+                        <div class="card-info">
+                            <span class="count">20</span>
+                            <span class="label">Обычная</span>
+                        </div>
+                    </div>
+                    <div class="game-card" onclick="prepareSession(50)">
+                        <div class="card-icon green"><i class="ph-fill ph-brain"></i></div>
+                        <div class="card-info">
+                            <span class="count">50</span>
+                            <span class="label">Хардкор</span>
+                        </div>
+                    </div>
+                    <div class="game-card gold" onclick="prepareSession(null)">
+                        <div class="card-icon yellow"><i class="ph-fill ph-star"></i></div>
+                        <div class="card-info">
+                            <span class="count">NEW</span>
+                            <span class="label">Учить новые</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-preview" class="view slide-in">
+                <div class="nav-header">
+                    <button class="icon-btn" onclick="showView('dashboard')"><i class="ph-bold ph-arrow-left"></i></button>
+                    <h2>План урока</h2>
+                </div>
+
+                <div class="preview-scroll-area" id="preview-list">
+                    </div>
+
+                <div class="bottom-sheet">
+                    <div class="mode-tabs">
+                        <button class="mode-tab active" onclick="selectMode('flashcards', this)">
+                            <i class="ph-fill ph-cards"></i> Карты
+                        </button>
+                        <button class="mode-tab" onclick="selectMode('quiz', this)">
+                            <i class="ph-fill ph-question"></i> Тест
+                        </button>
+                        <button class="mode-tab" onclick="selectMode('match', this)">
+                            <i class="ph-fill ph-puzzle-piece"></i> Пары
+                        </button>
+                        <button class="mode-tab" onclick="selectMode('builder', this)">
+                            <i class="ph-fill ph-text-t"></i> Сборка
+                        </button>
+                    </div>
+                    <button class="main-btn" onclick="startGame()">НАЧАТЬ <i class="ph-bold ph-play"></i></button>
+                </div>
+            </div>
+
+            <div id="view-game" class="view pop-in">
+                <div class="game-header">
+                    <button class="icon-btn close" onclick="endGame()"><i class="ph-bold ph-x"></i></button>
+                    <div class="progress-bar-container">
+                        <div class="game-progress-fill" id="step-bar"></div>
+                    </div>
+                </div>
+
+                <div id="game-area" class="game-container">
+                    </div>
+            </div>
+
+            <div id="view-dictionary" class="view fade-in">
+                <div class="sticky-header">
+                    <h2>Словарь</h2>
+                    <div class="search-box">
+                        <i class="ph ph-magnifying-glass"></i>
+                        <input type="text" id="search-input" placeholder="Найти фразу..." onkeyup="renderDictionary()">
+                    </div>
+                </div>
+                <div id="dict-list" class="dict-list">
+                    </div>
+            </div>
+
+        </main>
+
+        <nav class="glass-nav">
+            <button class="nav-btn active" onclick="showView('dashboard')">
+                <i class="ph-fill ph-house"></i>
+            </button>
+            <button class="nav-btn" onclick="showView('dictionary')">
+                <i class="ph-fill ph-book-bookmark"></i>
+            </button>
+            <button class="nav-btn" onclick="resetProgress()">
+                <i class="ph-fill ph-gear"></i>
+            </button>
+        </nav>
+
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
